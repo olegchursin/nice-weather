@@ -6,7 +6,7 @@ import { useGetWeather } from '../hooks/useRequest';
 import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
-  const { weather, isLoading, isError } = useGetWeather();
+  const { weather, isLoading, error } = useGetWeather();
 
   return (
     <div className={styles.container}>
