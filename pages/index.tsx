@@ -7,6 +7,8 @@ import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   const { weather, isLoading, error } = useGetWeather();
+
+  const icon = weather?.current?.condition?.icon;
   const iconUrl = `https:${weather?.current?.condition?.icon}`;
 
   return (
@@ -26,21 +28,23 @@ const Home: NextPage = () => {
                 {weather?.current?.condition?.text}.
               </h1>
               <button className={styles.location}>
-                {weather.location.name}
+                {weather?.location.name}
               </button>
             </section>
 
             <section className={styles.bottom}>
               <div>
-                {weather.current.last_updated}
-                <span>
-                  <Image
-                    src={iconUrl}
-                    alt={weather?.current?.condition?.text}
-                    width={50}
-                    height={50}
-                  />
-                </span>
+                {weather?.current.last_updated}
+                {icon ? (
+                  <span>
+                    <Image
+                      src={iconUrl}
+                      alt={weather?.current?.condition?.text}
+                      width={50}
+                      height={50}
+                    />
+                  </span>
+                ) : null}
               </div>
 
               <p className={styles.temp}>
